@@ -491,7 +491,15 @@
             <update-dependency module="jemalloc" artifact="libjemalloc.so"/>
             <update-dependency module="ktx" artifact="libktx.so"/>
             <update-dependency module="openal" artifact="libopenal.so"/>
-            <update-dependency module="openvr" artifact="libopenvr_api.so"/>
+            <sequential>
+                <sequential if:true="${binding.openvr}">
+                    <local name="dest"/>
+                    <property name="dest" value="${lib.native}/${module.openvr.path}"/>
+                    <mkdir dir="${dest}"/>
+                    <get-quiet name="openvr :: libopenvr_api.so" url="https://github.com/ValveSoftware/openvr/raw/refs/tags/v${openvr.version}/bin/linux${build.arch}/libopenvr_api.so" dest="${dest}" skipexisting="false"/>
+                </sequential>
+            </sequential>
+                
             <update-dependency module="openxr" artifact="libopenxr_loader.so"/>
             <update-dependency module="opus" artifact="libopus.so"/>
             <update-dependency module="shaderc" artifact="libshaderc.so"/>

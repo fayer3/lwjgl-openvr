@@ -1,0 +1,63 @@
+name: arm build
+
+on: 
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: set up JDK 8
+      uses: actions/setup-java@v5
+      with:
+        distribution: temurin
+        java-version: 8
+
+    - name: set up JDK
+      uses: actions/setup-java@v5
+      with:
+        distribution: temurin
+        java-version: 17
+        
+    - name: Set up GCC
+      run: |
+        sudo apt-get -y update
+        sudo apt-get -y install gcc-aarch64-linux-gnu
+        sudo apt-get -y install g++-aarch64-linux-gnu
+        sudo apt-get -y install build-essential
+       
+    - id: version
+      name: version from branch
+      run: |
+        IFS='-' read -r -a array <<< "${{ github.ref_name }}"
+        echo "parsed_version=${array[1]}" >> $GITHUB_OUTPUT
+    - name: Build for arm64
+      run: |
+        export JAVA8_HOME=$JAVA_HOME_8_${{runner.arch}}
+        export VERSION=${{steps.version.outputs.parsed_version}}
+        bash ci_build.bash
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.ref_name }}
+        path: bin/RELEASE/lwjgl-openvr
+        retention-days: 1
+        if-no-files-found: error
+    - name: rename
+      run: |
+        cp bin/RELEASE/lwjgl-openvr/lwjgl-openvr-natives-linux-arm64.jar ./natives-linux-arm64.jar
+    - name: github release
+      uses: softprops/action-gh-release@v3
+      with:
+        files: natives-linux-arm64.jar
+        target_commitish: ${{ github.sha }}
+        name: ${{steps.version.outputs.parsed_version}}
+        tag_name: ${{steps.version.outputs.parsed_version}}
+        body: lwjgl ${{steps.version.outputs.parsed_version}} linux arm64 openvr natives
