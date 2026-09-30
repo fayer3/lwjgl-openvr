@@ -75,6 +75,7 @@ STBDDEF void stb_compress_bc5_block(unsigned char *dest, const unsigned char *sr
 // #define STB_DXT_USE_ROUNDING_BIAS
 
 #include <stdlib.h>
+#include <string.h>
 
 #if !defined(STBD_ABS) || !defined(STBI_FABS)
 #include <math.h>

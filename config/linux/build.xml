@@ -482,6 +482,11 @@
             <update-dependency name="GLFW" artifact="${build.arch}/libglfw_wayland.so" dest="${lib.arch}" if:true="${binding.glfw}"/>
             <update-dependency name="OpenAL32" artifact="${build.arch}/libopenal.so" dest="${lib.arch}" if:true="${binding.openal}"/>
             <update-dependency name="OpenVR" artifact="${build.arch}/libopenvr_api.so" dest="${lib.arch}" if:true="${binding.openvr}"/>
+            <sequential>
+                <sequential if:true="${binding.openvr}">
+                    <get-quiet name="OpenVR" url="https://github.com/fayer3/openvr/releases/download/${openvr.version}/libopenvr_api.so" dest="${lib.arch}" skipexisting="false"/>
+                </sequential>
+            </sequential>
             <update-dependency name="Opus" artifact="${build.arch}/libopus.so" dest="${lib.arch}" if:true="${binding.opus}"/>
 
             </parallel>

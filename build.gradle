@@ -176,7 +176,7 @@ enum Artifacts {
     OPENVR(
         "lwjgl-openvr", "LWJGL - OpenVR bindings",
         "An API and runtime that allows access to VR hardware from multiple vendors without requiring that applications have specific knowledge of the hardware they are targeting.",
-        Platforms.LINUX, Platforms.MACOS, Platforms.WINDOWS
+        Platforms.LINUX, Platforms.LINUX_ARM64, Platforms.MACOS, Platforms.WINDOWS
     ),
     OPUS(
         "lwjgl-opus", "LWJGL - Opus bindings",
