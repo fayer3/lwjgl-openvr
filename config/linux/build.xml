@@ -255,8 +255,8 @@
             </beforeCompile>
         </build>
         
-       <!-- Meow -->
-       <local name="meow.flags"/>
+        <!-- Meow -->
+        <local name="meow.flags"/>
         <condition property="meow.flags" value="-maes -msse4.2" else="-march=armv8-a+crypto">
             <or>
                 <isset property="build.arch.x64"/>
@@ -483,7 +483,7 @@
             <update-dependency name="OpenAL32" artifact="${build.arch}/libopenal.so" dest="${lib.arch}" if:true="${binding.openal}"/>
             <sequential>
                 <sequential if:true="${binding.openvr}">
-                    <get-quiet name="OpenVR" url="https://github.com/fayer3/openvr/releases/download/${openvr.version}/libopenvr_api.so" dest="${lib.arch}.so" skipexisting="false"/>
+                    <get-quiet name="OpenVR" url="https://github.com/fayer3/openvr/releases/download/${openvr.version}/libopenvr_api.so" dest="${lib.arch}" skipexisting="false"/>
                 </sequential>
             </sequential>
             <update-dependency name="Opus" artifact="${build.arch}/libopus.so" dest="${lib.arch}" if:true="${binding.opus}"/>
