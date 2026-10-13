@@ -21,12 +21,11 @@ jobs:
 
     - name: Set up GCC
       run: |
-        sudo dpkg --add-architecture arm64
         sudo apt-get -y update
         sudo apt-get -y install gcc-aarch64-linux-gnu
         sudo apt-get -y install g++-aarch64-linux-gnu
         sudo apt-get -y install build-essential
-        sudo apt-get -y install libx11-dev:arm64
+        sudo apt-get -y install libx11-dev
        
     - id: version
       name: version from branch
