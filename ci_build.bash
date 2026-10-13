@@ -38,6 +38,7 @@ ant \
   -Dbinding.assimp=false \
   -Dbinding.openal=false \
   -Dbinding.jemalloc=false \
+  -Dbinding.nanovg=false \
   -Dbinding.openvr=true \
   -Dplatform.linux=true \
   -Dlwjgl.arch=arm64 \
@@ -61,6 +62,7 @@ ant \
   -Dbinding.assimp=false \
   -Dbinding.openal=false \
   -Dbinding.jemalloc=false \
+  -Dbinding.nanovg=false \
   -Dbinding.openvr=true \
   -Dplatform.linux=true \
   -Dlwjgl.arch=arm64 \
