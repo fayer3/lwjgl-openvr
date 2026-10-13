@@ -19,12 +19,6 @@ jobs:
         distribution: temurin
         java-version: 8
 
-    - name: set up JDK
-      uses: actions/setup-java@v5
-      with:
-        distribution: temurin
-        java-version: 17
-        
     - name: Set up GCC
       run: |
         sudo apt-get -y update

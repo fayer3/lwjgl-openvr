@@ -306,7 +306,7 @@ This script is included in /build.xml and /config/update-dependencies.xml.
         <attribute name="dest" default="${lib}/${platform}/@{artifact}"/>
 
         <sequential>
-            <get-quiet name="@{name}" url="https://build.lwjgl.org/${build.type}/${platform.remote}/@{artifact}" dest="@{dest}" skipexisting="false"/>
+            <get-quiet name="@{name}" url="https://build.lwjgl.org/${build.type}/${platform.remote}/@{artifact}" dest="@{dest}" skipexisting="true"/>
         </sequential>
     </macrodef>
 </project>
