@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 export BUILD_NUMBER=10
-export OPENVR_VERSION=1.3.22
+export OPENVR_VERSION=1.23.7
 
 export LWJGL_BUILD_TYPE=release/$VERSION
 export LWJGL_BUILD_ARCH=arm64
